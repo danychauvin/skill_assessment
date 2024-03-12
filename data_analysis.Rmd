@@ -1,0 +1,77 @@
+---
+title: "data_analysis"
+output: html_document
+date: "2024-03-12"
+---
+
+## Descriptive analysis
+Let's first check how many cells there are per condition and replicate in these data.
+
+```{r, }
+summary <- mydata %>% group_by(condition,replica) %>% 
+  dplyr::count()
+
+print.data.frame(summary)
+```
+
+## Scattering distributions
+Let's focus on the scatter data first.
+We first prepare the data to be able to use facet_wrap.
+```{r}
+measurement <- c('FSC.A','FSC.H','FSC.W','SSC.A','SSC.H','SSC.W')
+variable <- c('replica','replica_old',"condition")
+toplot <- mydata %>% select(all_of(c(measurement,variable)))
+toplot <- pivot_longer(toplot,cols = measurement,names_to = 'scattering',values_to = 'values')
+```
+
+```{r}
+toplot %>% ggplot()+
+  geom_freqpoly(aes(values,after_stat(density),col=replica),bins=100)+
+  facet_wrap(condition~scattering,scales="free")+
+  theme_cowplot()+
+  expand_limits(x = 0, y = 0)
+```
+
+```{r}
+measurement <- c('FSC.A','FSC.H','FSC.W','SSC.A','SSC.H','SSC.W')
+variable <- c('replica','replica_old',"condition")
+toplot <- mydata %>% select(all_of(c(measurement,variable)))
+#toplot <- pivot_longer(toplot,cols = measurement,names_to = 'scattering',values_to = 'values')
+```
+
+```{r}
+toplot %>% ggplot()+
+  geom_point(aes(FSC.A,SSC.A),alpha=0.1) + 
+  facet_wrap(condition~replica,scales="free")+
+  theme_cowplot()+
+  expand_limits(x = 0, y = 0)
+
+```
+
+```{r}
+toplot %>% ggplot()+
+  geom_point(aes(FSC.A,FSC.H),alpha=0.1) + 
+  facet_wrap(condition~replica,scales="free")+
+  theme_cowplot()+
+  expand_limits(x = 0, y = 0)
+
+```
+
+
+```{r}
+toplot %>% ggplot()+
+  geom_bin_2d(aes(FSC.A,FSC.H)) + 
+  facet_wrap(condition~replica,scales="free")+
+  theme_cowplot()+
+  expand_limits(x = 0, y = 0)
+```
+
+
+
+```{r}
+mydata %>% ggplot()+
+  geom_bin_2d(aes(CD45.AF532,SevenAAD)) + 
+  facet_wrap(condition~replica,scales="free")+
+  theme_cowplot()+
+  expand_limits(x = 0, y = 0)
+```

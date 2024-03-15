@@ -54,24 +54,54 @@ toplot %>% ggplot()+
   facet_wrap(condition~replica,scales="free")+
   theme_cowplot()+
   expand_limits(x = 0, y = 0)
-
 ```
 
 
 ```{r}
-toplot %>% ggplot()+
-  geom_bin_2d(aes(FSC.A,FSC.H)) + 
-  facet_wrap(condition~replica,scales="free")+
+toplot %>%
+  filter(condition=="postSpn") %>% 
+  ggplot()+
+  stat_bin_2d(aes(FSC.A,FSC.H),bins=500) + 
+  #facet_wrap(condition~replica,scales="free")+
   theme_cowplot()+
-  expand_limits(x = 0, y = 0)
+  expand_limits(x = c(0,5e6), y = c(0,4e6))
 ```
+
+```{r}
+mydata %>%
+  filter(condition=="postSpn",replica_old==84) %>% 
+  ggplot()+
+  stat_bin_2d(aes(CD45.2.BUV737,CD45.AF532),bins=50) + 
+  #facet_wrap(condition~replica,scales="free")+
+  theme_cowplot()
+  #expand_limits(x = c(0,5e6), y = c(0,4e6))
+```
+
+```{r}
+mydata %>%
+  filter(condition=="postSpn") %>% 
+  ggplot()+
+  stat_bin_2d(aes(CD45.2.BUV737,SevenAAD),bins=500) + 
+  #facet_wrap(condition~replica,scales="free")+
+  theme_cowplot()
+  #expand_limits(x = c(0,5e6), y = c(0,4e6))
+```
+
+# Generate NxN plots of all 2D heatmaps
+
+We want to plot all variables against each other using heat map fashion.
+One PDF for each replica experiment. It will enable us to judge precisely which population was actually taken in the data, and which one was discarded.
+
+Plus, we'll check potentially bad unmixing/weird populations.
+
+To do that quick, the best is certainly to use ggplot. But there must be a way to do that quickly taking advantage of relevant Bioconductor packages.
 
 
 
 ```{r}
-mydata %>% ggplot()+
-  geom_bin_2d(aes(CD45.AF532,SevenAAD)) + 
-  facet_wrap(condition~replica,scales="free")+
-  theme_cowplot()+
-  expand_limits(x = 0, y = 0)
+
+
+
+
 ```
+

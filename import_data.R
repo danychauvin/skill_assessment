@@ -1,13 +1,29 @@
-#Packages to install
+#Install necessary packages using Bioconductor
+#BiocManager::install("flowWorkspace")
+#BiocManager::install("openCyto")
+#BiocManager::install("flowAI")
+#BiocManager::install("ggcyto")
+#BiocManager::install("CytoML")
+#BiocManager::install("flowViz")
+
+#Install CytoExploreR
+devtools::install_github("DillonHammill/CytoExploreR")
+
+#Load necessary packages
 library(ggrepel)
 library(flowCore)
 library(tidyverse)
 library(rsvd)
-#library(cytofkit2) deprecated
 library(cytofWorkflow)
 library(ComplexHeatmap)
 library(Rtsne)
 library(hash)
+library(cowplot)
+library(devtools)
+library(flowViz)
+library(kableExtra)
+library(remotes)
+
 
 #Set seed
 set.seed(1234)

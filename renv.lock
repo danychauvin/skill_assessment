@@ -337,6 +337,90 @@
       ],
       "Hash": "69d3cd404389117e88215a843d332c93"
     },
+    "CytoExploreR": {
+      "Package": "CytoExploreR",
+      "Version": "1.1.0",
+      "Source": "GitHub",
+      "Remotes": "DillonHammill/CytoExploreRData",
+      "RemoteType": "github",
+      "RemoteHost": "api.github.com",
+      "RemoteRepo": "CytoExploreR",
+      "RemoteUsername": "DillonHammill",
+      "RemoteRef": "HEAD",
+      "RemoteSha": "0efb1cc19fc701ae03905cf1b8484c1dfeb387df",
+      "Requirements": [
+        "BiocGenerics",
+        "EmbedSOM",
+        "MASS",
+        "R",
+        "Rtsne",
+        "bslib",
+        "data.table",
+        "dplyr",
+        "flowAI",
+        "flowCore",
+        "flowWorkspace",
+        "grDevices",
+        "graphics",
+        "gtools",
+        "magrittr",
+        "methods",
+        "openCyto",
+        "purrr",
+        "rhandsontable",
+        "robustbase",
+        "rsvd",
+        "shiny",
+        "stats",
+        "superheat",
+        "tibble",
+        "tidyr",
+        "tools",
+        "umap",
+        "utils",
+        "visNetwork"
+      ],
+      "Hash": "59716ffdfeaa36f22c4310aac0d1d194"
+    },
+    "CytoML": {
+      "Package": "CytoML",
+      "Version": "2.15.2",
+      "Source": "GitHub",
+      "RemoteType": "github",
+      "RemoteHost": "api.github.com",
+      "RemoteRepo": "CytoML",
+      "RemoteUsername": "RGLab",
+      "RemoteRef": "HEAD",
+      "RemoteSha": "b1c491eac7abc17f515d09953d4ab1468bd9d62f",
+      "Requirements": [
+        "BH",
+        "Biobase",
+        "R",
+        "RBGL",
+        "RProtoBufLib",
+        "Rgraphviz",
+        "Rhdf5lib",
+        "XML",
+        "cpp11",
+        "cytolib",
+        "data.table",
+        "dplyr",
+        "flowCore",
+        "flowWorkspace",
+        "ggcyto",
+        "grDevices",
+        "graph",
+        "graphics",
+        "jsonlite",
+        "methods",
+        "openCyto",
+        "stats",
+        "tibble",
+        "utils",
+        "yaml"
+      ],
+      "Hash": "033a3f3f23e0456aef3db5a3c7782806"
+    },
     "DBI": {
       "Package": "DBI",
       "Version": "1.2.2",
@@ -347,6 +431,16 @@
         "methods"
       ],
       "Hash": "164809cd72e1d5160b4cb3aa57f510fe"
+    },
+    "DEoptimR": {
+      "Package": "DEoptimR",
+      "Version": "1.1-3",
+      "Source": "Repository",
+      "Repository": "RSPM",
+      "Requirements": [
+        "stats"
+      ],
+      "Hash": "72f87e0092e39384aee16df8d67d7410"
     },
     "DT": {
       "Package": "DT",
@@ -398,6 +492,23 @@
         "sparseMatrixStats"
       ],
       "Hash": "71c2d178d33f9d91999f67dc2d53b747"
+    },
+    "EmbedSOM": {
+      "Package": "EmbedSOM",
+      "Version": "2.1.2",
+      "Source": "Repository",
+      "Repository": "RSPM",
+      "Requirements": [
+        "FNN",
+        "Matrix",
+        "R",
+        "Rtsne",
+        "ggplot2",
+        "igraph",
+        "umap",
+        "uwot"
+      ],
+      "Hash": "2107ccbf6e778473373f0f57bf13fa97"
     },
     "ExperimentHub": {
       "Package": "ExperimentHub",
@@ -654,6 +765,17 @@
       ],
       "Hash": "470851b6d5d0ac559e9d01bb352b4021"
     },
+    "RBGL": {
+      "Package": "RBGL",
+      "Version": "1.78.0",
+      "Source": "Bioconductor",
+      "Requirements": [
+        "BH",
+        "graph",
+        "methods"
+      ],
+      "Hash": "1004433bbb90562582560642bebfd90f"
+    },
     "RColorBrewer": {
       "Package": "RColorBrewer",
       "Version": "1.1-3",
@@ -688,6 +810,19 @@
         "rlang"
       ],
       "Hash": "f5a75d57e0a3014a6ef537ac04a80fc6"
+    },
+    "RSpectra": {
+      "Package": "RSpectra",
+      "Version": "0.16-1",
+      "Source": "Repository",
+      "Repository": "RSPM",
+      "Requirements": [
+        "Matrix",
+        "R",
+        "Rcpp",
+        "RcppEigen"
+      ],
+      "Hash": "6b5ab997fd5ff6d46a5f1d9f8b76961c"
     },
     "Rcpp": {
       "Package": "Rcpp",
@@ -756,6 +891,33 @@
       "Source": "Repository",
       "Repository": "RSPM",
       "Hash": "1c0aa18b97e6aaa17f93b8b866c0ace5"
+    },
+    "RcppTOML": {
+      "Package": "RcppTOML",
+      "Version": "0.2.2",
+      "Source": "Repository",
+      "Repository": "RSPM",
+      "Requirements": [
+        "R",
+        "Rcpp"
+      ],
+      "Hash": "c232938949fcd8126034419cc529333a"
+    },
+    "Rgraphviz": {
+      "Package": "Rgraphviz",
+      "Version": "2.46.0",
+      "Source": "Bioconductor",
+      "Requirements": [
+        "R",
+        "grDevices",
+        "graph",
+        "graphics",
+        "grid",
+        "methods",
+        "stats4",
+        "utils"
+      ],
+      "Hash": "8441e63e9597e4a7684972d6bfaaca4f"
     },
     "Rhdf5lib": {
       "Package": "Rhdf5lib",
@@ -1200,6 +1362,19 @@
       ],
       "Hash": "f61dbaec772ccd2e17705c1e872e9e7c"
     },
+    "changepoint": {
+      "Package": "changepoint",
+      "Version": "2.2.4",
+      "Source": "Repository",
+      "Repository": "RSPM",
+      "Requirements": [
+        "R",
+        "methods",
+        "stats",
+        "zoo"
+      ],
+      "Hash": "da0cd08f38ad8fd15763460641916596"
+    },
     "circlize": {
       "Package": "circlize",
       "Version": "0.4.16",
@@ -1421,16 +1596,21 @@
     },
     "cytolib": {
       "Package": "cytolib",
-      "Version": "2.14.1",
-      "Source": "Bioconductor",
-      "Repository": "Bioconductor 3.18",
+      "Version": "2.15.1",
+      "Source": "GitHub",
+      "RemoteType": "github",
+      "RemoteHost": "api.github.com",
+      "RemoteRepo": "cytolib",
+      "RemoteUsername": "RGLab",
+      "RemoteRef": "HEAD",
+      "RemoteSha": "887b8d8c8d6b8688ea312e0d9fe9c37ce0e8cbc8",
       "Requirements": [
         "BH",
         "R",
         "RProtoBufLib",
         "Rhdf5lib"
       ],
-      "Hash": "62071794414abc3661aac7a7986ebb4e"
+      "Hash": "f6c944ae49cb1f0198bdf4bb3c8b519d"
     },
     "data.table": {
       "Package": "data.table",
@@ -1766,11 +1946,53 @@
       ],
       "Hash": "192053c276525c8495ccfd523aa8f2d1"
     },
+    "flowAI": {
+      "Package": "flowAI",
+      "Version": "1.32.0",
+      "Source": "Bioconductor",
+      "Requirements": [
+        "R",
+        "RColorBrewer",
+        "changepoint",
+        "flowCore",
+        "ggplot2",
+        "graphics",
+        "knitr",
+        "methods",
+        "plyr",
+        "reshape2",
+        "rmarkdown",
+        "scales",
+        "stats",
+        "utils"
+      ],
+      "Hash": "eae4853b251618343ea79367f9eccdb4"
+    },
+    "flowClust": {
+      "Package": "flowClust",
+      "Version": "3.40.0",
+      "Source": "Bioconductor",
+      "Requirements": [
+        "Biobase",
+        "BiocGenerics",
+        "R",
+        "flowCore",
+        "graph",
+        "methods",
+        "parallel"
+      ],
+      "Hash": "64648aaa390dc073e7ceccee69e357fb"
+    },
     "flowCore": {
       "Package": "flowCore",
-      "Version": "2.14.1",
-      "Source": "Bioconductor",
-      "Repository": "Bioconductor 3.18",
+      "Version": "2.15.1",
+      "Source": "GitHub",
+      "RemoteType": "github",
+      "RemoteHost": "api.github.com",
+      "RemoteRepo": "flowCore",
+      "RemoteUsername": "RGLab",
+      "RemoteRef": "HEAD",
+      "RemoteSha": "b098223f32b948371f456c65a51528ab9a61022d",
       "Requirements": [
         "BH",
         "Biobase",
@@ -1789,7 +2011,7 @@
         "stats4",
         "utils"
       ],
-      "Hash": "1c0e0a01a8e065f0abfc5eb3c1ee9b2a"
+      "Hash": "892bbb18dd9b8c1221f32e4e7619be40"
     },
     "flowViz": {
       "Package": "flowViz",
@@ -1815,6 +2037,48 @@
         "utils"
       ],
       "Hash": "8e655d3387090a368da643befd8e678b"
+    },
+    "flowWorkspace": {
+      "Package": "flowWorkspace",
+      "Version": "4.15.3",
+      "Source": "GitHub",
+      "RemoteType": "github",
+      "RemoteHost": "api.github.com",
+      "RemoteRepo": "flowWorkspace",
+      "RemoteUsername": "RGLab",
+      "RemoteRef": "HEAD",
+      "RemoteSha": "0d6bb9aeae77b50d733b011cc2b9336b8a54e5ae",
+      "Requirements": [
+        "BH",
+        "Biobase",
+        "BiocGenerics",
+        "DelayedArray",
+        "R",
+        "RBGL",
+        "RProtoBufLib",
+        "Rgraphviz",
+        "Rhdf5lib",
+        "S4Vectors",
+        "XML",
+        "cpp11",
+        "cytolib",
+        "data.table",
+        "dplyr",
+        "flowCore",
+        "ggplot2",
+        "grDevices",
+        "graph",
+        "graphics",
+        "matrixStats",
+        "methods",
+        "ncdfFlow",
+        "scales",
+        "stats",
+        "stats4",
+        "tools",
+        "utils"
+      ],
+      "Hash": "93418d777af5d576c42f4d1ab653d141"
     },
     "fontawesome": {
       "Package": "fontawesome",
@@ -1963,6 +2227,44 @@
         "vipor"
       ],
       "Hash": "899f28fe0388b7f687d7453429c2474d"
+    },
+    "ggcyto": {
+      "Package": "ggcyto",
+      "Version": "1.31.2",
+      "Source": "GitHub",
+      "RemoteType": "github",
+      "RemoteHost": "api.github.com",
+      "RemoteRepo": "ggcyto",
+      "RemoteUsername": "RGLab",
+      "RemoteRef": "HEAD",
+      "RemoteSha": "3e9462cad26bd2f6e29f886675c2957f77058a04",
+      "Requirements": [
+        "RColorBrewer",
+        "data.table",
+        "flowCore",
+        "flowWorkspace",
+        "ggplot2",
+        "gridExtra",
+        "hexbin",
+        "methods",
+        "ncdfFlow",
+        "plyr",
+        "rlang",
+        "scales"
+      ],
+      "Hash": "65efbdd617baf4e4880c33770ca9d949"
+    },
+    "ggdendro": {
+      "Package": "ggdendro",
+      "Version": "0.2.0",
+      "Source": "Repository",
+      "Repository": "RSPM",
+      "Requirements": [
+        "MASS",
+        "R",
+        "ggplot2"
+      ],
+      "Hash": "6c64efa73d60c45946a5e6e3f894fdcd"
     },
     "ggforce": {
       "Package": "ggforce",
@@ -2216,6 +2518,20 @@
       ],
       "Hash": "d6db1667059d027da730decdc214b959"
     },
+    "graph": {
+      "Package": "graph",
+      "Version": "1.80.0",
+      "Source": "Bioconductor",
+      "Requirements": [
+        "BiocGenerics",
+        "R",
+        "methods",
+        "stats",
+        "stats4",
+        "utils"
+      ],
+      "Hash": "af02a936ce577656083213cdd8f5584d"
+    },
     "gridExtra": {
       "Package": "gridExtra",
       "Version": "2.3",
@@ -2289,6 +2605,16 @@
         "vctrs"
       ],
       "Hash": "9171f898db9d9c4c1b2c745adc2c1ef1"
+    },
+    "here": {
+      "Package": "here",
+      "Version": "1.0.1",
+      "Source": "Repository",
+      "Repository": "RSPM",
+      "Requirements": [
+        "rprojroot"
+      ],
+      "Hash": "24b224366f9c2e7534d2344d10d59211"
     },
     "hexbin": {
       "Package": "hexbin",
@@ -2880,6 +3206,23 @@
       ],
       "Hash": "17e96668f44a28aef0981d9e17c49b59"
     },
+    "ncdfFlow": {
+      "Package": "ncdfFlow",
+      "Version": "2.48.0",
+      "Source": "Bioconductor",
+      "Requirements": [
+        "BH",
+        "Biobase",
+        "BiocGenerics",
+        "R",
+        "Rhdf5lib",
+        "cpp11",
+        "flowCore",
+        "methods",
+        "zlibbioc"
+      ],
+      "Hash": "2100e82a25aa496f24b40ef95042bae1"
+    },
     "nlme": {
       "Package": "nlme",
       "Version": "3.1-163",
@@ -2932,6 +3275,29 @@
         "R"
       ],
       "Hash": "df58958f293b166e4ab885ebcad90e02"
+    },
+    "openCyto": {
+      "Package": "openCyto",
+      "Version": "2.14.0",
+      "Source": "Bioconductor",
+      "Requirements": [
+        "BH",
+        "Biobase",
+        "BiocGenerics",
+        "R",
+        "RBGL",
+        "RColorBrewer",
+        "cpp11",
+        "data.table",
+        "flowClust",
+        "flowCore",
+        "flowViz",
+        "flowWorkspace",
+        "graph",
+        "methods",
+        "ncdfFlow"
+      ],
+      "Hash": "09da14ffaafe701f6b3f9168f894d2d2"
     },
     "openssl": {
       "Package": "openssl",
@@ -3410,6 +3776,42 @@
       ],
       "Hash": "bb5996d0bd962d214a11140d77589917"
     },
+    "reticulate": {
+      "Package": "reticulate",
+      "Version": "1.35.0",
+      "Source": "Repository",
+      "Repository": "RSPM",
+      "Requirements": [
+        "Matrix",
+        "R",
+        "Rcpp",
+        "RcppTOML",
+        "graphics",
+        "here",
+        "jsonlite",
+        "methods",
+        "png",
+        "rappdirs",
+        "rlang",
+        "utils",
+        "withr"
+      ],
+      "Hash": "90be16b53b955990db4aa355c03d85eb"
+    },
+    "rhandsontable": {
+      "Package": "rhandsontable",
+      "Version": "0.3.8",
+      "Source": "Repository",
+      "Repository": "RSPM",
+      "Requirements": [
+        "htmlwidgets",
+        "jsonlite",
+        "magrittr",
+        "methods",
+        "utils"
+      ],
+      "Hash": "cc9b9fd1376181e84c88621711454676"
+    },
     "rjson": {
       "Package": "rjson",
       "Version": "0.2.21",
@@ -3454,6 +3856,21 @@
         "yaml"
       ],
       "Hash": "d65e35823c817f09f4de424fcdfa812a"
+    },
+    "robustbase": {
+      "Package": "robustbase",
+      "Version": "0.99-2",
+      "Source": "Repository",
+      "Repository": "RSPM",
+      "Requirements": [
+        "DEoptimR",
+        "R",
+        "graphics",
+        "methods",
+        "stats",
+        "utils"
+      ],
+      "Hash": "bae2e53c94459ff147aef478eac6ee94"
     },
     "roxygen2": {
       "Package": "roxygen2",
@@ -3826,6 +4243,30 @@
       ],
       "Hash": "960e2ae9e09656611e0b8214ad543207"
     },
+    "superheat": {
+      "Package": "superheat",
+      "Version": "1.0.0",
+      "Source": "GitHub",
+      "RemoteType": "github",
+      "RemoteHost": "api.github.com",
+      "RemoteRepo": "superheat",
+      "RemoteUsername": "rlbarter",
+      "RemoteRef": "HEAD",
+      "RemoteSha": "2c619578c2ae8bc46e1383183276f98b66b44a53",
+      "Requirements": [
+        "R",
+        "dplyr",
+        "forcats",
+        "ggdendro",
+        "ggplot2",
+        "gtable",
+        "magrittr",
+        "plyr",
+        "scales",
+        "stringr"
+      ],
+      "Hash": "57f6591e3e6c230c2ab9e37ee04a3b93"
+    },
     "survival": {
       "Package": "survival",
       "Version": "3.5-7",
@@ -4058,6 +4499,23 @@
       ],
       "Hash": "f561504ec2897f4d46f0c7657e488ae1"
     },
+    "umap": {
+      "Package": "umap",
+      "Version": "0.2.10.0",
+      "Source": "Repository",
+      "Repository": "RSPM",
+      "Requirements": [
+        "Matrix",
+        "R",
+        "RSpectra",
+        "Rcpp",
+        "methods",
+        "openssl",
+        "reticulate",
+        "stats"
+      ],
+      "Hash": "249dae2d91909b98bc93086d82cd7c7f"
+    },
     "urlchecker": {
       "Package": "urlchecker",
       "Version": "1.0.1",
@@ -4188,6 +4646,24 @@
         "R"
       ],
       "Hash": "c826c7c4241b6fc89ff55aaea3fa7491"
+    },
+    "visNetwork": {
+      "Package": "visNetwork",
+      "Version": "2.1.2",
+      "Source": "Repository",
+      "Repository": "RSPM",
+      "Requirements": [
+        "R",
+        "grDevices",
+        "htmltools",
+        "htmlwidgets",
+        "jsonlite",
+        "magrittr",
+        "methods",
+        "stats",
+        "utils"
+      ],
+      "Hash": "3e48b097e8d9a91ecced2ed4817a678d"
     },
     "vroom": {
       "Package": "vroom",

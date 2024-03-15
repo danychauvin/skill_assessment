@@ -4,15 +4,86 @@ output: html_document
 date: "2024-03-12"
 ---
 
-## Descriptive analysis
-Let's first check how many cells there are per condition and replicate in these data.
+# What can be said about the quality of the data?
 
-```{r, }
-summary <- mydata %>% group_by(condition,replica) %>% 
-  dplyr::count()
+To assess this, I propose to perform some sanity checks. First, we'd like to look at the distributions of all individual channels, and compare these between replicate. This will enable us to get a sense of what the phenotypes of these cells look like, in terms of central tendencies, and variability. Also, that will enable us to control for reproducibility.
 
-print.data.frame(summary)
+### 1D Distributions
+
+First, let's write a function that plots all desired distributions.
+```{r,warning=FALSE}
+plot_all_1D_distributions <- function(ini,end,condition){
+  cyto_plot_save(sprintf("./figures/1d_distributions_%s.pdf",condition),width=25,height=25)
+  cyto_plot_custom(layout=c(6,5))
+  for (i in 1:9){
+    cyto_plot(fs[ini:end],channels=cyto_channels(fs)[i],density_stack=0.7,axes_trans=transList
+              )}
+  for (i in 10:30){
+    cyto_plot(fs[ini:end],channels=cyto_channels(fs)[i],density_stack=0.7,axes_trans=transList,
+              xlim=c(-1e4,1e6))}
+  cyto_plot_complete()}
 ```
+
+Then we plot all 1D Distributions for all "postSpn","preSpn" and "saline" replicates.
+```{r}
+plot_all_1D_distributions(1,6,"postSpn")
+plot_all_1D_distributions(7,12,"preSpn")
+plot_all_1D_distributions(13,18,"saline")
+```
+
+Overall, postSpn samples are more reproducible than preSpn and saline. That also can be explained by the actual number of cells there are in each sample. There are 10 times more cells in postSpn versus preSpn, and 20 times more cells in postSpn versus saline.
+
+```{r}
+cyto_stats_compute(fs,stat="count")
+```
+
+Let's compare these distributions in each channel: pre|saline|post, to determine where distributions have changed.
+
+```{r}
+
+
+```
+
+
+
+
+
+
+
+
+
+
+
+```{r,warning=FALSE}
+plot_all_1D_distributions <- function(ini,end,condition){
+  cyto_plot_save(sprintf("./figures/1d_distributions_%s.pdf",condition),width=25,height=25)
+  cyto_plot_custom(layout=c(6,5))
+  for (i in 1:9){
+    cyto_plot(fs[ini:end],channels=cyto_channels(fs)[i],density_stack=0.7,axes_trans=transList
+              )}
+  for (i in 10:30){
+    cyto_plot(fs[ini:end],channels=cyto_channels(fs)[i],density_stack=0.7,axes_trans=transList,
+              xlim=c(-1e4,1e6))}
+  cyto_plot_complete()}
+```
+
+We can do the same for all "preSpn" samples.
+
+```{r,warning=FALSE}
+cyto_plot_save("./figures/1d_distributions_preSpn.pdf",width=25,height=25)
+cyto_plot_custom(layout=c(6,5))
+for (i in 1:9){
+  cyto_plot(fs[1:6],channels=cyto_channels(fs)[i],density_stack=0.7,axes_trans=transList
+            )}
+for (i in 10:30){
+  cyto_plot(fs[1:6],channels=cyto_channels(fs)[i],density_stack=0.7,axes_trans=transList,
+            xlim=c(-1e4,1e6))}
+cyto_plot_complete()
+```
+
+
+
+
 
 ## Scattering distributions
 Let's focus on the scatter data first.

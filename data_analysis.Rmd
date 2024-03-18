@@ -151,7 +151,10 @@ There is definitely a lot of things in there. Let's go line by line.
   
 - Going vertical along *CD62L*. Seems interesting. It is only on for a cluster of CD4+ T Naive Cells (cluster 10).
   - CD4: CD62L+ are supposed to be CD4+ cells (according to phenograph). It does not show when plotting CD62L versus CD4. It seems that most of the cells that are CD62L+, are also CD4- (and CD3-, and CD44-). It does not show, because most of these cells are scattered in many different cluster I feel.
-  - CD19:  4 populations. CD19-CD62L+ (cluster 10), CD19+CD62L+ (spread in a bunch of Bcells cluster).
+  - CD19:  4 populations. CD19-CD62L+ (cluster 10), CD19+CD62L+ (spread in a bunch of Bcells cluster), CD19-CD62L- (most of T cells except for cluster 10), CD19+CD62L- (spread over B-cells).
+  - CD43: strange. I was expecting to see CD62L+ CD43+ on this graph. With CD62L higher for CD43+ (Tcells) than CD43- (B cells). But it is as high... maybe coming from other datasets?
+  - All CD69+ cells, or... almost, are CD62L-. Which would make sense if CD62L is indeed a marker of T4 Naive cells.
+  - CD38: is supposed to be memory marker. But some cells are CD62L+CD38+. I do not see them on the phenograph.
   - 
   
   

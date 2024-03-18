@@ -8,19 +8,22 @@ date: "2024-03-12"
 
 To assess this, I propose to perform some sanity checks. First, we'd like to look at the distributions of all individual channels, and compare these between replicate. This will enable us to get a sense of what the phenotypes of these cells look like, in terms of central tendencies, and variability. Also, that will enable us to control for reproducibility.
 
-### 1D Distributions
+# 1D Distributions
 
 First, let's write a function that plots all desired distributions.
 ```{r,warning=FALSE}
 plot_all_1D_distributions <- function(ini,end,condition){
   cyto_plot_save(sprintf("./figures/1d_distributions_%s.pdf",condition),width=25,height=25)
   cyto_plot_custom(layout=c(6,5))
+  
+  xlim_inf <- rep(c(0),times=9)
+  xlim_sup <- c(4e6,4e6,1e6,1e6,1e6,7e5,2e6,7e5,1e6)
+  
   for (i in 1:9){
-    cyto_plot(fs[ini:end],channels=cyto_channels(fs)[i],density_stack=0.7,axes_trans=transList
+    cyto_plot(fs[ini:end],channels=cyto_channels(fs)[i],density_stack=0.7,axes_trans=transList,title=condition,xlim=c(xlim_inf[i],xlim_sup[i])
               )}
   for (i in 10:30){
-    cyto_plot(fs[ini:end],channels=cyto_channels(fs)[i],density_stack=0.7,axes_trans=transList,
-              xlim=c(-1e4,1e6))}
+    cyto_plot(fs[ini:end],channels=cyto_channels(fs)[i],density_stack=0.7,axes_trans=transList,title=condition,xlim=c(-1e5,1e6))}
   cyto_plot_complete()}
 ```
 
@@ -40,48 +43,192 @@ cyto_stats_compute(fs,stat="count")
 Let's compare these distributions in each channel: pre|saline|post, to determine where distributions have changed.
 
 ```{r}
-
-
-```
-
-
-
-
-
-
-
-
-
-
-
-```{r,warning=FALSE}
-plot_all_1D_distributions <- function(ini,end,condition){
-  cyto_plot_save(sprintf("./figures/1d_distributions_%s.pdf",condition),width=25,height=25)
-  cyto_plot_custom(layout=c(6,5))
+plot_1D_distribution_comparison <- function(){
+  cyto_plot_save("./figures/1d_distribution_comparison.pdf",width=15,height=45*3)
+  cyto_plot_custom(layout=c(30,3))
+  
+  xlim_inf <- rep(c(0),times=9)
+  xlim_sup <- c(4e6,4e6,1e6,1e6,1e6,7e5,2e6,7e5,1e6)
+  
   for (i in 1:9){
-    cyto_plot(fs[ini:end],channels=cyto_channels(fs)[i],density_stack=0.7,axes_trans=transList
-              )}
+    cyto_plot(fs[7:12],channels=cyto_channels(fs)[i],density_stack=0.7,axes_trans=transList,title="preSpn",xlim=c(xlim_inf[i],xlim_sup[i]))
+    cyto_plot(fs[13:18],channels=cyto_channels(fs)[i],density_stack=0.7,axes_trans=transList,title="saline",xlim=c(xlim_inf[i],xlim_sup[i]))
+    cyto_plot(fs[1:6],channels=cyto_channels(fs)[i],density_stack=0.7,axes_trans=transList,title="postSpn",xlim=c(xlim_inf[i],xlim_sup[i]))
+    }
   for (i in 10:30){
-    cyto_plot(fs[ini:end],channels=cyto_channels(fs)[i],density_stack=0.7,axes_trans=transList,
-              xlim=c(-1e4,1e6))}
+    cyto_plot(fs[7:12],channels=cyto_channels(fs)[i],density_stack=0.7,axes_trans=transList,
+              xlim=c(-1e5,1e6),title="preSpn")
+    cyto_plot(fs[13:18],channels=cyto_channels(fs)[i],density_stack=0.7,axes_trans=transList,
+              xlim=c(-1e5,1e6),title="saline")
+    cyto_plot(fs[1:6],channels=cyto_channels(fs)[i],density_stack=0.7,axes_trans=transList,
+              xlim=c(-1e5,1e6),title="postSpn")}
   cyto_plot_complete()}
+
+plot_1D_distribution_comparison()
 ```
 
-We can do the same for all "preSpn" samples.
+# 2D distributions
 
-```{r,warning=FALSE}
-cyto_plot_save("./figures/1d_distributions_preSpn.pdf",width=25,height=25)
-cyto_plot_custom(layout=c(6,5))
-for (i in 1:9){
-  cyto_plot(fs[1:6],channels=cyto_channels(fs)[i],density_stack=0.7,axes_trans=transList
-            )}
-for (i in 10:30){
-  cyto_plot(fs[1:6],channels=cyto_channels(fs)[i],density_stack=0.7,axes_trans=transList,
-            xlim=c(-1e4,1e6))}
+Let's make one PDF per file.
+
+```{r}
+plot_2d_distributions <- function(k){
+  xlim_inf <- rep(c(0),times=9)
+  xlim_sup <- c(4e6,4e6,1e6,1e6,1e6,7e5,2e6,7e5,1e6)
+
+  condition <- cyto_details(fs)$conditions[k]
+  cyto_plot_save(sprintf("./figures/2d_heatmap_%s.pdf",condition),width=135,height=135)
+  cyto_plot_custom(layout=c(30,30))
+  for(i in 1:30){
+    for(j in 1:30){
+      cyto_plot(fs[k],channels=cyto_channels(fs)[c(i,j)],
+                parent="root",
+                xlim=c(lim_inf[i],lim_sup[i]),
+                ylim=c(lim_inf[j],lim_sup[j]),
+                title=cyto_details(fs)$conditions[k],
+                axes_trans=transList)
+    }
+  }
+  cyto_plot_complete()
+}
+
+for(p in 1:18){
+  plot_2d_distributions(p)}
+```
+
+There is definitely a lot of things in there. Let's go line by line.
+## postSpn79 
+- Against all other scattering properties, nothing interesting to say. One population, that's it. Which also means that in terms of granularity and size, all these cells make a continuum. Then the variance it self, is hard to judge for me.
+- Going along *FSC-A*:
+  - *B220*: a B220 negative and a B220 positive populations. The positive population is supposed to be B2 B Cells. Naive and resident memory B cells. There indeed seems to be an enrichment for these in the sample compared to controls. But we can also find these cells in the control.
+  - *CD8/IgD*: CD8/IgD neg and pos populations but no difference compared to controls.
+  - *CD3*: small tail as well, but no big differences when looking at the 1d histograms, that are characterized by high variability.
+  - *CD4*: clear bimodal distribution (as in saline and pre). But large part of the population is negative. Could there be an over compensation issue?
+  - *GL7*: Tail towards GL7+ populations. True for saline and pre...
+  
+
+- Going vertical along *PD1*: something interesting. Distribution looks slightly bimodal. Turns out, population can be exploded:
+    - B220- is slightly higher in PD1, than B220+.
+    - CD4+ is slightly higher in PD1 than CD4-
+    - Possibly not enough correction from PD1 to CD44 channels (BV510-A to BV570)
+    - CD19- cells are slightly higher in PD1 than CD19+ cells.
+    - Possibly not enough correction from PD1 to CD43 channels (BV510-A to BV750)
+    - CD38- cells slightly lower than CD38+ cells in PD1.
+    
+- Going vertical along *CD44*: -/+ populations
+    - B220: CD44+B220- and CD44-B220+ which makes sense as CD44 is supposed to be a marker of memory T-cells.
+    - CD8_IdG: same, but number of CD8+ positive cells is very small.
+    - CD3: CD44+ are also CD3+. But this is not obvious on the final phenograph (see cluster 20 and 12).
+    - CD4: CD44+ are also CD4+. But there are counter example on the final phenograph (see cluster 10, naive T-cells, but how many are there?).
+    - Possibly not enough correction from PD1 to CD44 channels (BV510-A to BV570)?
+    - CD19- are CD44+, CD19+ are CD44-. Coherent with Phenograph.
+    - CD62L+ cells are CDD44- (very few cells)
+    - CD43: Positive correlation (same cluster on the phenograph)
+    - CD11a: Positive correlation (same cluster on the phenograph)
+    - *CD69*: interesting and somewhat complex: lots of CD69-CD44- cells, CD69+CD44+ cells (Trm cells), and also some CD44-CD69+ (Brm cells and naive/activated B cells)
+    - *CD73*: same as CD69, similar pattern: lots of CD44+CD73+, CD44-CD73-, and some CD44-CD73+. But never off together.
+    - *CD38*: CD44-CD38+, CD44+CD38-. But no CD38 on the phenograph.
+    - IgM: IgM+ cells are CD44-. But there is cluster 12 (a few cells that are on the top of the tail?)
+
+- Going vertical along *CD19*:
+  - B220: B220+GL19+ cells (CD19+ are actually B cells, this is the criteria used to filtering T cells). But... there are some CD19+ cells, that are not B220+.
+  - 2 clusters: 4 and 12. The main difference between these two? CD44 expression. 4 is supposed to be B1 Brm cells (but, the reason escapes me), whereas 12 is supposed to be B1 Bmem cells. What's the difference?
+  - CD8_IgD: 4 populations there: CD19-CD8+ (T8 Trm cells), CD19-CD8-(Various Tcells), CD19+CD8_IgD+(which are also IgM+, Bcells naive or not), CD19+CD8_IgD-(activated IgM+ Bcells).
+  - CD3+ cells are CD19-. Only Tcells.
+  - CD4+ cells are CD19 (vast majority)
+  - GL7: GL7 cells can be either CD19+ or CD19-
+  - CD62L: CD62L cells can be either CD19+ or CD19-
+  - CD43: very few cells are CD43+CD19+. Most of CD43+ are CD19- (marker of T-cells activation).
+  - CD11: strong correlation with CD19+ cells. CD19- cells (T-cells) are almost always CD11+.
+  - CD69: 4 populations
+    - CD19+CD69-: B cells
+    - CD19+CD69+: Brm cells
+    - CD19-CD69-: T cells (non Trm)
+    - CD19+CD69+: Trm cells
+  - CD73: Most of the cells are CD19+CD73- or CD19-CD73+ (as visible in the phenograph). But there are cells in the 3 quadrants.
+  - CD38: all CD19+ are CD38+. Continuum CD19-CD38- to CD38+.
+  - IgM: diverse degree of IgM+ for CD19+ (Bcells)
+  
+- Going vertical along *CD62L*. Seems interesting. It is only on for a cluster of CD4+ T Naive Cells (cluster 10).
+  - CD4: CD62L+ are supposed to be CD4+ cells (according to phenograph). It does not show when plotting CD62L versus CD4. It seems that most of the cells that are CD62L+, are also CD4- (and CD3-, and CD44-). It does not show, because most of these cells are scattered in many different cluster I feel.
+  - CD19:  4 populations. CD19-CD62L+ (cluster 10), CD19+CD62L+ (spread in a bunch of Bcells cluster).
+  - 
+  
+  
+  
+    
+  
+    
+
+
+    
+    
+    
+    
+    
+    
+    
+
+
+
+
+
+# 2D distributions
+
+```{r}
+names_list <- simplify(new_colnames)
+
+toplot <- mydata %>% 
+  dplyr::filter(condition=="postSpn") %>% 
+  select(names_list[c(1:30)],"replica_old") %>% 
+  pivot_longer(cols=names_list[c(1:30)],names_to = "var",values_to = "val") %>% 
+  nest_by(var) %>% {
+    d <- tidyr::expand(.,V1=var,V2=var)
+    d <- left_join(d,mutate(.,data=list(rename_with(data,.fn=~paste0(.x,"_x")))), by = c("V1"="var"))
+    d <- left_join(d,mutate(.,data=list(rename_with(data,.fn=~paste0(.x,"_y")))), by = c("V2"="var"))
+    d
+  } %>% 
+  unnest(c(data.x,data.y))
+  
+ggplot(toplot, aes(x = val_x, y = val_y, color = replica_old_x)) +
+  geom_point() +
+  facet_grid(rows = vars(V1), cols = vars(V2))
+```
+
+Now let's systematically compare variables 2 by 2. Gates are already set, we need to merge.
+
+```{r}
+merged_fs <- cyto_merge_by(fs,"treatment")
+```
+
+```{r,ouput=}
+lim_inf <- c(rep(c(0),times=9),rep(-1e5,times=20))
+lim_sup <- c(4e6,4e6,1e6,1e6,1e6,7e5,2e6,7e5,1e6,rep(1e6,times=20))
+replica <- cyto_details(fs)$replica
+for(i in 1:18){
+  cyto_gate_draw(fs[[i]],alias=sprintf("replica_%s",replica[i]),channels=cyto_channels(fs)[c(1,4)],xlim=c(lim_inf[1],lim_sup[1]),ylim=c(lim_inf[4],lim_sup[4]),type="boundary")
+  Sys.sleep(5)}
+```
+
+```{r}
+cyto_gate_draw(fs[[1]],parent="root",alias=sprintf("replica_%s",replica[i]),channels=cyto_channels(fs)[c(1,4)],xlim=c(lim_inf[1],lim_sup[1]),ylim=c(lim_inf[4],lim_sup[4]),type="boundary",popup=TRUE)
+```
+
+```{r}
+cyto_plot_save("./figures/2d_distributions_postSpn.pdf",width=5,height=5)
+cyto_plot_custom(layout=c(1,2))
+lim_inf <- c(rep(c(0),times=9),rep(-1e5,times=20))
+lim_sup <- c(4e6,4e6,1e6,1e6,1e6,7e5,2e6,7e5,1e6,rep(1e6,times=20))
+#How to fuse populations in a single one, while gating them.
+
+for(i in 1:1){
+  for(j in 1:2){
+    cyto_plot(merged_fs[[1]],channels=cyto_channels(fs)[c(i,j)],xlim=c(lim_inf[i],lim_sup[i]),ylim=c(lim_inf[j],lim_sup[j]),point_col)
+  }
+}
 cyto_plot_complete()
+
 ```
-
-
 
 
 
